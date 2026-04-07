@@ -477,6 +477,27 @@ button,
     width: 100%;
 }
 
+/* Premium Resume Button in Nav */
+.nav-resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: var(--gradient-neon);
+    color: var(--bg-primary) !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: var(--transition-normal);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+
+.nav-resume-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(249, 115, 22, 0.5);
+}
+
 .nav-toggle {
     display: none;
     background: none;
@@ -3814,6 +3835,12 @@ section {
 
     .nav-link {
         font-size: 1.5rem;
+    }
+
+    .nav-resume-btn {
+        font-size: 1.2rem;
+        padding: 14px 28px;
+        margin-top: 20px;
     }
 
     .nav-toggle {
