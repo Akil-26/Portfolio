@@ -2015,6 +2015,10 @@ section {
     color: var(--text-secondary);
 }
 
+.about-main-text {
+    margin-bottom: 32px;
+}
+
 .about-intro {
     font-size: 1.4rem;
     color: var(--text-primary);
@@ -2024,12 +2028,112 @@ section {
 }
 
 .about-text p {
-    margin-bottom: 18px;
-    line-height: 1.9;
+    margin-bottom: 20px;
+    line-height: 2;
     font-size: 1.05rem;
 }
 
-/* Stats Cards */
+/* My Approach Block */
+.my-approach {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 32px 0;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.05) 0%, transparent 100%);
+    border-left: 3px solid var(--neon-orange);
+    border-radius: var(--radius-sm);
+}
+
+.approach-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.approach-icon {
+    font-size: 1.2rem;
+    color: var(--neon-orange);
+}
+
+.approach-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.about-closing {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    border-left: 2px solid rgba(249, 115, 22, 0.3);
+}
+
+/* Enhanced Tech Nodes */
+.tech-node {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--neon-orange);
+    transition: var(--transition-normal);
+    cursor: pointer;
+}
+
+.tech-node:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+    border-color: var(--neon-orange);
+}
+
+.tech-node::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    opacity: 0;
+    transition: var(--transition-fast);
+    pointer-events: none;
+}
+
+.tech-node:hover::after {
+    opacity: 1;
+}
+
+.tech-node.n4 {
+    top: 50%;
+    right: -20px;
+    animation: float 4s ease-in-out infinite 0.75s;
+}
+
+/* About Image with Glow */
+.about-card-3d {
+    position: relative;
+}
+
+.about-card-3d::before {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    filter: blur(30px);
+}
+
+/* Stats Cards Enhancement */
 .about-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2039,22 +2143,43 @@ section {
 
 .stat-card {
     text-align: center;
-    padding: 28px 20px;
+    padding: 32px 20px;
     background: var(--gradient-card);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: var(--transition-normal);
-    cursor: url("./cursors/pointer.svg") 16 16, pointer;
+    cursor: pointer;
+    position: relative;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    transition: var(--transition-normal);
+    border-radius: var(--radius-md);
 }
 
 .stat-card:hover {
-    border-color: var(--neon-red);
-    transform: translateY(-8px);
+    border-color: var(--neon-orange);
+    transform: translateY(-8px) scale(1.02);
     box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(239, 68, 68, 0.2);
+        0 0 30px rgba(249, 115, 22, 0.2);
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 12px;
 }
 
 .stat-number {
@@ -2078,9 +2203,10 @@ section {
 
 .stat-label {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     margin-top: 8px;
+    font-weight: 500;
 }
 
 /* =====================================================
@@ -3120,6 +3246,60 @@ section {
     .about-content {
         grid-template-columns: 1fr;
         gap: 60px;
+    }
+
+    .my-approach {
+        padding: 20px;
+        margin: 24px 0;
+    }
+
+    .approach-item {
+        gap: 10px;
+    }
+
+    .approach-icon {
+        font-size: 1rem;
+    }
+
+    .approach-text {
+        font-size: 0.95rem;
+    }
+
+    .about-closing {
+        font-size: 0.95rem;
+        padding-left: 16px;
+        margin-bottom: 32px;
+    }
+
+    .tech-node {
+        width: 45px;
+        height: 45px;
+        font-size: 0.8rem;
+    }
+
+    .tech-node.n4 {
+        display: block;
+    }
+
+    .stat-card {
+        padding: 24px 16px;
+    }
+
+    .stat-icon {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-suffix {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
     }
 
     .skills-3d-grid {
