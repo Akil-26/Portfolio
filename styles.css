@@ -540,7 +540,31 @@ button,
     justify-content: center;
     position: relative;
     padding: 100px 0 60px;
-    /* Reduced padding to lift content */
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    animation: heroGlow 8s ease-in-out infinite;
+}
+
+@keyframes heroGlow {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+    }
 }
 
 .hero-container {
@@ -1646,6 +1670,70 @@ section {
 }
 
 /* =====================================================
+   Focus Strip - Specialization
+   ===================================================== */
+.focus-strip {
+    padding: 60px 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(249, 115, 22, 0.02) 50%, transparent 100%);
+    position: relative;
+}
+
+.focus-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.focus-box {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 24px 20px;
+    text-align: center;
+    transition: var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.focus-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, transparent 50%);
+    opacity: 0;
+    transition: var(--transition-normal);
+}
+
+.focus-box:hover {
+    transform: translateY(-5px);
+    border-color: rgba(249, 115, 22, 0.4);
+    box-shadow: 0 15px 35px rgba(249, 115, 22, 0.15);
+}
+
+.focus-box:hover::before {
+    opacity: 1;
+}
+
+.focus-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.focus-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    position: relative;
+    z-index: 1;
+}
+
+/* =====================================================
    What I Build - Domain Section
    ===================================================== */
 .what-i-build {
@@ -2580,6 +2668,32 @@ section {
     line-height: 1.8;
 }
 
+/* Project Story Format */
+.project-story {
+    margin-bottom: 20px;
+}
+
+.story-item {
+    margin-bottom: 12px;
+}
+
+.story-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--neon-orange);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.story-item p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
 .project-tags {
     display: flex;
     gap: 10px;
@@ -2588,8 +2702,8 @@ section {
 
 .tag {
     padding: 8px 18px;
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%);
-    border: 1px solid rgba(239, 68, 68, 0.3);
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.3);
     border-radius: var(--radius-full);
     font-size: 0.85rem;
     color: #fff;
@@ -2603,15 +2717,15 @@ section {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, var(--neon-red) 0%, var(--neon-purple) 100%);
+    background: linear-gradient(135deg, var(--neon-orange) 0%, var(--neon-purple) 100%);
     opacity: 0;
     transition: var(--transition-fast);
 }
 
 .tag:hover {
-    border-color: var(--neon-red);
+    border-color: var(--neon-orange);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
 }
 
 .tag:hover::before {
@@ -3137,6 +3251,29 @@ section {
         justify-content: center;
     }
 
+    /* Focus Strip Mobile */
+    .focus-strip {
+        padding: 40px 0;
+    }
+
+    .focus-boxes {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .focus-box {
+        padding: 20px 16px;
+    }
+
+    .focus-icon {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .focus-label {
+        font-size: 0.85rem;
+    }
+
     /* What I Build Section Mobile */
     .what-i-build {
         padding: 60px 0;
@@ -3160,6 +3297,19 @@ section {
     }
 
     .domain-description {
+        font-size: 0.85rem;
+    }
+
+    /* Project Story Mobile */
+    .story-item {
+        margin-bottom: 10px;
+    }
+
+    .story-label {
+        font-size: 0.7rem;
+    }
+
+    .story-item p {
         font-size: 0.85rem;
     }
 
