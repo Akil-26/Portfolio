@@ -1,0 +1,6 @@
+/*
+  This file is intentionally minimal.
+  The main stylesheet (styles.css) is served from /public/styles.css
+  and loaded via a <link> tag injected in index.html through Vite.
+  All component-level styles live in styles.css.
+*/
