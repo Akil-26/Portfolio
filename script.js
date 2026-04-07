@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     init3DTiltEffect();
     initCursorGlow();
     initCounterAnimation();
+    initShowcaseEffects();
 });
 
 // =====================================================
@@ -348,3 +349,61 @@ window.addEventListener('load', () => {
         el.style.animationDelay = `${index * 0.15}s`;
     });
 });
+
+// =====================================================
+// Interactive Showcase Effects
+// ===================================================== 
+function initShowcaseEffects() {
+    const imageFrame = document.querySelector('.image-frame');
+    const techNodes = document.querySelectorAll('.tech-node');
+    
+    if (!imageFrame) return;
+    
+    // Parallax mouse movement for image frame
+    imageFrame.addEventListener('mousemove', (e) => {
+        const rect = imageFrame.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        // Move image slightly with mouse
+        const moveX = x * 0.02;
+        const moveY = y * 0.02;
+        
+        const img = imageFrame.querySelector('.about-avatar-img');
+        if (img) {
+            img.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+        }
+        
+        // Move tech nodes in opposite direction for depth
+        techNodes.forEach((node, index) => {
+            const speed = 0.03 + (index * 0.01);
+            const nodeMoveX = -x * speed;
+            const nodeMoveY = -y * speed;
+            
+            const baseTransform = getComputedStyle(node).transform;
+            node.style.transform = `${baseTransform !== 'none' ? baseTransform : ''} translate(${nodeMoveX}px, ${nodeMoveY}px)`;
+        });
+    });
+    
+    // Reset on mouse leave
+    imageFrame.addEventListener('mouseleave', () => {
+        const img = imageFrame.querySelector('.about-avatar-img');
+        if (img) {
+            img.style.transform = '';
+        }
+        
+        techNodes.forEach(node => {
+            node.style.transform = '';
+        });
+    });
+    
+    // Add click effect to tech nodes
+    techNodes.forEach(node => {
+        node.addEventListener('click', () => {
+            node.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                node.style.transform = '';
+            }, 150);
+        });
+    });
+}

@@ -2202,18 +2202,238 @@ section {
 
 /* n4 removed for cleaner look */
 
-/* About Image with Glow */
-.about-card-3d {
-    position: relative;
+/* =====================================================
+   Interactive Product Showcase Card
+   ===================================================== */
+
+/* Background Grid Pattern */
+.showcase-grid {
+    position: absolute;
+    inset: -50px;
+    background-image: 
+        linear-gradient(rgba(249, 115, 22, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(249, 115, 22, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+    animation: gridFloat 8s ease-in-out infinite;
 }
 
-.about-card-3d::before {
+@keyframes gridFloat {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(5px, -5px);
+    }
+}
+
+/* Showcase Glow - Premium Background */
+.showcase-glow {
+    position: absolute;
+    inset: -60px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, rgba(249, 115, 22, 0.1) 30%, transparent 70%);
+    filter: blur(40px);
+    opacity: 0.4;
+    z-index: 1;
+    transition: var(--transition-normal);
+    animation: showcaseGlow 6s ease-in-out infinite;
+}
+
+@keyframes showcaseGlow {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+/* Enhanced Image Frame */
+.image-frame {
+    position: relative;
+    width: 300px;
+    height: 380px;
+    transition: var(--transition-normal);
+    cursor: pointer;
+}
+
+.image-frame:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+
+.image-frame:hover .showcase-glow {
+    opacity: 0.8;
+    filter: blur(50px);
+}
+
+.image-frame:hover .image-placeholder {
+    box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(249, 115, 22, 0.4);
+}
+
+.image-frame:hover .project-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Premium Glass Card Effect */
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-card);
+    border: 2px solid rgba(249, 115, 22, 0.2);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    position: relative;
+    z-index: 3;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    overflow: hidden;
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: var(--transition-normal);
+}
+
+/* Glass Reflection Effect */
+.image-placeholder::before {
     content: '';
     position: absolute;
-    inset: -40px;
-    background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 35%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
+    z-index: 2;
     pointer-events: none;
+}
+
+/* Project Overlay Info */
+.project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 4;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: var(--transition-normal);
+}
+
+.overlay-label {
+    font-size: 0.75rem;
+    color: rgba(249, 115, 22, 0.9);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.overlay-title {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    background: var(--gradient-neon);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Enhanced About Avatar */
+.about-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    transition: var(--transition-normal);
+    border-radius: 18px;
+}
+
+.image-frame:hover .about-avatar-img {
+    transform: scale(1.05);
+    filter: brightness(1.1) contrast(1.1);
+}
+
+/* Simplified Frame Glow */
+.frame-glow {
+    position: absolute;
+    inset: -30px;
+    border-radius: var(--radius-xl);
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 60%);
     filter: blur(30px);
+    opacity: 0.2;
+    z-index: 2;
+    transition: var(--transition-normal);
+}
+
+/* Enhanced Tech Nodes - Interactive Labels */
+.tech-node {
+    position: absolute;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(249, 115, 22, 0.1) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.4);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: var(--transition-normal);
+    cursor: pointer;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: float 4s ease-in-out infinite;
+    z-index: 5;
+}
+
+.tech-node::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-neon);
+    border-radius: var(--radius-full);
+    opacity: 0;
+    transition: var(--transition-fast);
+    z-index: -1;
+    filter: blur(8px);
+}
+
+.tech-node:hover {
+    transform: translateY(-3px) scale(1.1);
+    border-color: rgba(249, 115, 22, 0.8);
+    box-shadow: 
+        0 8px 25px rgba(249, 115, 22, 0.3),
+        0 0 30px rgba(249, 115, 22, 0.2);
+}
+
+.tech-node:hover::before {
+    opacity: 0.4;
+}
+
+.tech-node span {
+    background: var(--gradient-neon);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
 }
 
 /* Stats Cards Enhancement */
@@ -3355,7 +3575,7 @@ section {
     }
 
     .tech-node {
-        padding: 6px 12px;
+        padding: 6px 14px;
         font-size: 0.7rem;
         gap: 4px;
     }
@@ -3378,6 +3598,39 @@ section {
         top: 50%;
         right: -5px;
         transform: translateY(-50%);
+    }
+
+    /* Mobile Showcase Elements */
+    .showcase-grid {
+        inset: -30px;
+        background-size: 20px 20px;
+        opacity: 0.2;
+    }
+
+    .showcase-glow {
+        inset: -40px;
+        filter: blur(30px);
+    }
+
+    .image-frame {
+        width: 280px;
+        height: 340px;
+    }
+
+    .image-frame:hover {
+        transform: translateY(-5px) scale(1.02);
+    }
+
+    .project-overlay {
+        padding: 16px;
+    }
+
+    .overlay-label {
+        font-size: 0.7rem;
+    }
+
+    .overlay-title {
+        font-size: 1rem;
     }
 
     .stat-card {
