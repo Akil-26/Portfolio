@@ -657,6 +657,21 @@ button,
     font-weight: 400;
 }
 
+/* Hero Role - Title under name */
+.hero-role {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+}
+
+.role-divider {
+    color: var(--neon-red);
+    margin: 0 12px;
+    font-weight: 300;
+}
+
 .highlight-gradient {
     background: var(--gradient-neon);
     -webkit-background-clip: text;
@@ -2129,6 +2144,73 @@ section {
 }
 
 /* =====================================================
+   Journey Section
+   ===================================================== */
+.journey {
+    padding: var(--section-padding) 0;
+    background: transparent;
+}
+
+.journey-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.journey-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 32px 24px;
+    text-align: center;
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.journey-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-neon);
+    opacity: 0;
+    transition: var(--transition-normal);
+}
+
+.journey-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(239, 68, 68, 0.3);
+    box-shadow: 0 20px 40px rgba(239, 68, 68, 0.15);
+}
+
+.journey-card:hover::before {
+    opacity: 1;
+}
+
+.journey-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.journey-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.journey-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* =====================================================
    Projects Section
    ===================================================== */
 .projects {
@@ -3054,6 +3136,41 @@ section {
         flex-direction: column;
         gap: 12px;
     }
+
+    /* Hero role on mobile */
+    .hero-role {
+        font-size: 1.1rem;
+    }
+
+    .role-divider {
+        margin: 0 8px;
+    }
+
+    /* Journey section on mobile */
+    .journey {
+        padding: 60px 0;
+    }
+
+    .journey-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .journey-card {
+        padding: 24px 20px;
+    }
+
+    .journey-icon {
+        font-size: 2rem;
+    }
+
+    .journey-title {
+        font-size: 1.1rem;
+    }
+
+    .journey-description {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3067,6 +3184,14 @@ section {
 
     .hero-tagline {
         font-size: 1rem;
+    }
+
+    .hero-role {
+        font-size: 1rem;
+    }
+
+    .role-divider {
+        margin: 0 6px;
     }
 
     .hero-badge {
@@ -3104,6 +3229,18 @@ section {
     .social-link-3d {
         width: 50px;
         height: 50px;
+    }
+
+    .journey-card {
+        padding: 20px 16px;
+    }
+
+    .journey-icon {
+        font-size: 1.8rem;
+    }
+
+    .journey-title {
+        font-size: 1rem;
     }
 }
 
